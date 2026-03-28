@@ -4,6 +4,13 @@
 
 O código original tinha tudo dentro de uma única classe `App.java`: menu, validações, cálculo de nota, impressão do tabuleiro e os dados iniciais. A refatoração separou essas responsabilidades em classes menores, aplicando os princípios SOLID.
 
+Apesar de não utilizarmos frameworks externos como o Spring Boot,
+tentei seguir a mesma ideia de separação em camadas que ele propõe:
+repository para acesso aos dados, service para a lógica de negócio
+e uma camada de apresentação (MenuConsole). A injeção de dependência
+também foi feita manualmente pelo construtor :)
+
+
 
 ## Onde cada princípio foi aplicado
 
@@ -32,10 +39,3 @@ Os serviços não criam seus próprios repositórios. Eles recebem os repositór
 - **Validação de input vazio no `coletarResposta`** — além de tratar exceções, agora o código verifica se o usuário digitou algo antes de tentar processar a resposta.
 
 - **Comentários nas classes** — cada classe tem um comentário explicando sua responsabilidade, facilitando a leitura e manutenção do código.
-
-- **Apesar de não utilizarmos frameworks externos como o Spring Boot,
-tentei seguir a mesma ideia de separação em camadas que ele propõe:
-repository para acesso aos dados, service para a lógica de negócio
-e uma camada de apresentação (MenuConsole). A injeção de dependência
-também foi feita manualmente pelo construtor :)
-
