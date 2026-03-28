@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tentativa {
-	private long id;
+    //classe de modelo, armazena apenas os dados da entidade, sem lógica de negócio.
+
+    private long id;
 	private long participanteId;
 	private long provaId;
 

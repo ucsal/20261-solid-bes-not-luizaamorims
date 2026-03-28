@@ -11,6 +11,10 @@ import java.util.List;
 
 public class TentativaMemory implements TentativaRepository {
 
+    //essas classes que fiz de memoria, na verdade são para armazenar os dados de cada classe, nesse
+    // caso aqui, é das tentativas , o proximoId é para ir incrementando o id de cada tentativa
+    // que for feita, e a lista de tentativas é para armazenar as tentativas feitas
+
     private long proximoId = 1;
     private final List<Tentativa> tentativas = new ArrayList<>();
 

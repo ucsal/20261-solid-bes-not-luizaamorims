@@ -11,63 +11,55 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class MenuConsole {
+    //essa classe é responsável pela interação com o usuário via console.
+    //exibe o menu, coleta entradas e delega as ações aos serviços competentes.
+    // não contém lógica de negócio, apenas apresentação e navegação.
 
     private final Scanner sc;
     private final ParticipanteService participanteService;
     private final ProvaService provaService;
-    private final AplicarProvaService aplicacaoService;
+    private final AplicarProvaService aplicarProvaService;
     private final TabuleiroImprimir tabuleiroFenPrinter;
 
     public MenuConsole(Scanner sc,
                        ParticipanteService participanteService,
                        ProvaService provaService,
-                       AplicarProvaService aplicacaoService,
+                       AplicarProvaService aplicarProvaService,
                        TabuleiroImprimir tabuleiroFenPrinter) {
         this.sc = sc;
         this.participanteService = participanteService;
         this.provaService = provaService;
-        this.aplicacaoService = aplicacaoService;
+        this.aplicarProvaService = aplicarProvaService;
         this.tabuleiroFenPrinter = tabuleiroFenPrinter;
     }
 
     public void iniciar() {
-        System.out.println("\n=== OLIMPÍADA DE QUESTÕES (V1) ===");
-        System.out.println("1) Cadastrar participante");
-        System.out.println("2) Cadastrar prova");
-        System.out.println("3) Cadastrar questão (A–E) em uma prova");
-        System.out.println("4) Aplicar prova (selecionar participante + prova)");
-        System.out.println("5) Listar tentativas (resumo)");
-        System.out.println("0) Sair");
-        System.out.print("> ");
+        boolean rodando = true;
+        while (rodando) {
+            System.out.println("\n=== OLIMPÍADA DE QUESTÕES (V1) ===");
+            System.out.println("1) Cadastrar participante");
+            System.out.println("2) Cadastrar prova");
+            System.out.println("3) Cadastrar questão (A–E) em uma prova");
+            System.out.println("4) Aplicar prova (selecionar participante + prova)");
+            System.out.println("5) Listar tentativas (resumo)");
+            System.out.println("0) Sair");
+            System.out.print("> ");
 
-        switch (sc.nextLine()) {
-            case "1" -> {
-                cadastrarParticipante();
-                iniciar();
-            }
-            case "2" -> {
-                cadastrarProva();
-                iniciar();
-            }
-            case "3" -> {
-                cadastrarQuestao();
-                iniciar();
-            }
-            case "4" -> {
-                aplicarProva();
-                iniciar();
-            }
-            case "5" -> {
-                listarTentativas();
-                iniciar();
-            }
-            case "0" -> System.out.println("tchau");
-            default -> {
-                System.out.println("opção inválida");
-                iniciar();
+            switch (sc.nextLine()) {
+                case "1" -> cadastrarParticipante();
+                case "2" -> cadastrarProva();
+                case "3" -> cadastrarQuestao();
+                case "4" -> aplicarProva();
+                case "5" -> listarTentativas();
+                case "0" -> {
+                    System.out.println("tchau");
+                    rodando = false;
+                }
+                default -> System.out.println("opção inválida");
             }
         }
     }
+
 
     private void cadastrarParticipante() {
         System.out.print("Nome: ");
@@ -114,7 +106,7 @@ public class MenuConsole {
         System.out.print("Alternativa correta (A–E): ");
         char correta;
         try {
-            correta = br.com.ucsal.olimpiadas.models.Questao.normalizar(sc.nextLine().trim().charAt(0));
+            correta = Questao.normalizar(sc.nextLine().trim().charAt(0));
         } catch (Exception e) {
             System.out.println("alternativa inválida");
             return;
@@ -160,10 +152,10 @@ public class MenuConsole {
             respostas.add(coletarResposta(q));
         }
 
-        Tentativa tentativa = aplicacaoService.registrarTentativa(
+        Tentativa tentativa = aplicarProvaService.registrarTentativa(
                 participanteId, provaId, questoesDaProva, respostas);
 
-        int nota = aplicacaoService.calcularNota(tentativa);
+        int nota = aplicarProvaService.calcularNota(tentativa);
         System.out.println("\n--- Fim da Prova ---");
         System.out.println("Nota (acertos): " + nota + " / " + tentativa.getRespostas().size());
     }
@@ -178,8 +170,13 @@ public class MenuConsole {
         }
         System.out.print("Sua resposta (A–E): ");
         try {
-            return br.com.ucsal.olimpiadas.models.Questao.normalizar(sc.nextLine().trim().charAt(0));
-        } catch (Exception e) {
+            String input = sc.nextLine().trim();
+            if (input.isEmpty()) {
+                System.out.println("resposta não pode estar vazia");
+                return coletarResposta(q);
+            }
+            return Questao.normalizar(input.charAt(0));
+        } catch (IllegalArgumentException e) {
             System.out.println("resposta inválida (marcando como errada)");
             return 'X';
         }
@@ -187,10 +184,10 @@ public class MenuConsole {
 
     private void listarTentativas() {
         System.out.println("\n--- Tentativas ---");
-        for (var t : aplicacaoService.listarTentativas()) {
+        for (var t : aplicarProvaService.listarTentativas()) {
             System.out.printf("#%d | participante=%d | prova=%d | nota=%d/%d%n",
                     t.getId(), t.getParticipanteId(), t.getProvaId(),
-                    aplicacaoService.calcularNota(t), t.getRespostas().size());
+                    aplicarProvaService.calcularNota(t), t.getRespostas().size());
         }
     }
 

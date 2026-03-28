@@ -1,8 +1,10 @@
 package br.com.ucsal.olimpiadas.models;
 
 public class Prova {
+    //classe de modelo, armazena apenas os dados da entidade, sem lógica de negócio.
 
-	private long id;
+
+    private long id;
 	private String titulo;
 
 	public long getId() {

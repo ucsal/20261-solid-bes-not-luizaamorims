@@ -17,6 +17,9 @@ import br.com.ucsal.olimpiadas.service.ProvaService;
 import java.util.Scanner;
 
 public class App {
+    //ponto de entrada da aplicação.
+    // responsável por instanciar e conectar todas as dependências  e popular os dados iniciais via seed.
+    // não contém lógica de negócio nem de apresentação.
 
     public static void main(String[] args) {
         ParticipanteRepository participanteRepo = new ParticipanteMemory();
@@ -27,7 +30,7 @@ public class App {
         var calculadora = new CalculadoraNota();
         var participanteService = new ParticipanteService(participanteRepo);
         var provaService = new ProvaService(provaRepo, questaoRepo);
-        var aplicacaoService = new AplicarProvaService(tentativaRepo, calculadora);
+        var aplicarProvaService = new AplicarProvaService(tentativaRepo, calculadora);
 
         seed(provaService);
 
@@ -35,7 +38,7 @@ public class App {
                 new Scanner(System.in),
                 participanteService,
                 provaService,
-                aplicacaoService,
+                aplicarProvaService,
                 new TabuleiroImprimir()
         );
 

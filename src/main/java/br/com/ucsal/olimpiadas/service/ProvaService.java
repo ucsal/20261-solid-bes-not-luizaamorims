@@ -8,6 +8,9 @@ import br.com.ucsal.olimpiadas.repository.QuestaoRepository;
 import java.util.List;
 
 public class ProvaService {
+    //classe de serviço para gerenciar as provas e questões, com métodos para cadastrar provas e questões,
+    // listar provas e questões por prova, e verificar a existência de uma prova por ID
+
     private final ProvaRepository provaRepo;
     private final QuestaoRepository questaoRepo;
 

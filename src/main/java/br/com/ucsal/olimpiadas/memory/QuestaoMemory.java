@@ -8,6 +8,11 @@ import java.util.List;
 
 public class QuestaoMemory implements QuestaoRepository {
 
+    //essas classes que fiz de memoria, na verdade são para armazenar os dados de cada classe, nesse
+    // caso aqui, é das questoes, o proximoId é para ir incrementando o id de cada questao
+    // que for criada, e a lista de questoes é para armazenar as questoes criados
+    //tambem lista por id da prova
+
     private long proximoId = 1;
     private final List<Questao> questoes = new ArrayList<>();
 

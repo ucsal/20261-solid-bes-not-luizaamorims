@@ -8,6 +8,11 @@ import java.util.List;
 
 public class ProvaMemory implements ProvaRepository {
 
+  //essas classes que fiz de memoria, na verdade são para armazenar os dados de cada classe, nesse
+    // caso aqui, é da prova, o proximoId é para ir incrementando o id de cada prova
+   // que for criada, e a lista de prova é para armazenar as provas criados
+
+
     private long proximoId = 1;
     private final List<Prova> provas = new ArrayList<>();
 

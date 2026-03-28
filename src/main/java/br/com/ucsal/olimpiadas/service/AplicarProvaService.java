@@ -7,6 +7,9 @@ import br.com.ucsal.olimpiadas.repository.TentativaRepository;
 import java.util.List;
 
 public class AplicarProvaService {
+    //classe com uma unica responsabilidade de aplicar a prova, registrar as tentativas e calcular as notas,
+    // utilizando o repositório de tentativas e a calculadora de notas
+
     private final TentativaRepository tentativaRepo;
     private final CalculadoraNota calculadora;
 

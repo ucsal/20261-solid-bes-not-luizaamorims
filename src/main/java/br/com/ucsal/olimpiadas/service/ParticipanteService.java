@@ -7,6 +7,10 @@ import java.util.List;
 
 public class ParticipanteService {
 
+    //classse de serviço, nela tem as regras de negócio para o participante, como cadastrar um novo participante,
+    // listar todos os participantes e verificar se um participante existe por id.
+    // Ela utiliza o repositório de participantes para realizar as operações de persistência.
+
     private final ParticipanteRepository repositorio;
 
     public ParticipanteService(ParticipanteRepository repositorio) {

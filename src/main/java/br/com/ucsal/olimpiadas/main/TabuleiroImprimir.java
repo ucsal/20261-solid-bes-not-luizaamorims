@@ -2,6 +2,8 @@ package br.com.ucsal.olimpiadas.main;
 
 public class TabuleiroImprimir {
 
+    //classe que possui apenas uma responsabilidade: imprimir o tabuleiro a partir de uma string FEN
+
     public void imprimir(String fen) {
         String parteTabuleiro = fen.split(" ")[0];
         String[] ranks = parteTabuleiro.split("/");

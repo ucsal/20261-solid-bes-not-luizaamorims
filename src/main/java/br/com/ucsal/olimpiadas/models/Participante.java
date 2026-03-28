@@ -1,6 +1,8 @@
 package br.com.ucsal.olimpiadas.models;
 
 public class Participante {
+    //classe de modelo, armazena apenas os dados da entidade, sem lógica de negócio.
+
 	private long id;
 	private String nome;
 	private String email;

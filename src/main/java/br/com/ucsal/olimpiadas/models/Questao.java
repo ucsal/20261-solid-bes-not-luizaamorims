@@ -3,8 +3,10 @@ package br.com.ucsal.olimpiadas.models;
 import java.util.Arrays;
 
 public class Questao {
+    //classe de modelo, armazena apenas os dados da entidade, sem lógica de negócio.
 
-	private long id;
+
+    private long id;
 	private long provaId;
 
 	private String enunciado;
