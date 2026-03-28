@@ -4,7 +4,6 @@ import br.com.ucsal.olimpiadas.models.Prova;
 import br.com.ucsal.olimpiadas.repository.ProvaRepository;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ProvaMemory implements ProvaRepository {
@@ -13,18 +12,20 @@ public class ProvaMemory implements ProvaRepository {
     private final List<Prova> provas = new ArrayList<>();
 
     public void salvar(Prova prova) {
-        Prova p = new Prova();
         prova.setId(proximoId++);
-        prova.setTitulo(p.getTitulo());
-        provas.add(p);
-
+        provas.add(prova);
     }
 
     public List<Prova> listarTodos() {
-        return Collections.unmodifiableList(provas);
+        return new ArrayList<>(provas);
     }
 
     public boolean existeProva(long id) {
-        return provas.stream().anyMatch(p -> p.getId() == id);
+        for (Prova p : provas) {
+            if (p.getId() == id) {
+                return true;
+            }
+        }
+        return false;
     }
 }

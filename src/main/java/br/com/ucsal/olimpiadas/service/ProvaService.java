@@ -16,13 +16,14 @@ public class ProvaService {
         this.questaoRepo = questaoRepo;
     }
 
-    public void cadastrarProva(String titulo) {
+    public Prova cadastrarProva(String titulo) {
         Prova prova = new Prova();
         prova.setTitulo(titulo);
         provaRepo.salvar(prova);
+        return prova;
     }
 
-    public void cadastrarQuestao(long provaId, String enunciado,
+    public Questao cadastrarQuestao(long provaId, String enunciado,
                                  String[] alternativas, char correta,
                                  String fenInicial) {
         if (!provaRepo.existeProva(provaId)) {
@@ -35,6 +36,7 @@ public class ProvaService {
         Questao.setAlternativaCorreta(correta);
         Questao.setFenInicial(fenInicial);
         questaoRepo.salvar(Questao);
+        return Questao;
     }
 
     public List<Prova> listarProvas() {

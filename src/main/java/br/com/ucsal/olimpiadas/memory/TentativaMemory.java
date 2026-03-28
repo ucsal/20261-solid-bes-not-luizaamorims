@@ -21,15 +21,14 @@ public class TentativaMemory implements TentativaRepository {
         tentativa.setProvaId(t.getProvaId());
 
         for (int i = 0; i < questoes.size(); i++) {
-            var q = questoes.get(i);
+            Questao q = questoes.get(i);
             char marcada = marcadas.get(i);
-            var r = new Resposta();
+            Resposta r = new Resposta();
             r.setQuestaoId(q.getId());
             r.setAlternativaMarcada(marcada);
             r.setCorreta(q.isRespostaCorreta(marcada));
             tentativa.getRespostas().add(r);
         }
-
         tentativas.add(tentativa);
     }
 

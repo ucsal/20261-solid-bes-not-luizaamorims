@@ -22,11 +22,18 @@ public class ParticipanteMemory implements ParticipanteRepository {
         p.setEmail(p.getEmail());
         participantes.add(p);
     }
+
     public List<Participante> listarTodos() {
         return new ArrayList<>(participantes);
     }
 
     public boolean existeParticipante(long id) {
-        return participantes.stream().anyMatch(p -> p.getId() == id);
+        for (Participante p : participantes) {
+            if (p.getId() == id) {
+                return true;
+            }
+        }
+        return false;
     }
 }
+

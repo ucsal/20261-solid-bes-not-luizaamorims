@@ -13,10 +13,12 @@ public class ParticipanteService {
         this.repositorio = repositorio;
     }
 
-    public void cadastrar(String nome, String email) {
+    public Participante cadastrar(String nome, String email) {
         Participante participante = new Participante();
         participante.setNome(nome);
         participante.setEmail(email);
+        repositorio.salvar(participante);
+        return participante;
     }
 
     public List<Participante> listarTodos() {

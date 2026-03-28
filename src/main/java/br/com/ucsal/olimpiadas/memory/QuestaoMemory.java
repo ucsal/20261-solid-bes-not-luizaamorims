@@ -14,11 +14,11 @@ public class QuestaoMemory implements QuestaoRepository {
     public void salvar(Questao questao) {
         Questao q = new Questao();
         q.setId(proximoId++);
-        q.setProvaId(q.getId());
-        q.setEnunciado(q.getEnunciado());
-        q.setAlternativas(q.getAlternativas());
-        q.setAlternativaCorreta(q.getAlternativaCorreta());
-        q.setFenInicial(q.getFenInicial());
+        q.setProvaId(questao.getProvaId());
+        q.setEnunciado(questao.getEnunciado());
+        q.setAlternativas(questao.getAlternativas());
+        q.setAlternativaCorreta(questao.getAlternativaCorreta());
+        q.setFenInicial(questao.getFenInicial());
         questoes.add(q);
     }
 
