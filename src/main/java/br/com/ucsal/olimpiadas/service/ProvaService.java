@@ -20,6 +20,9 @@ public class ProvaService {
     }
 
     public Prova cadastrarProva(String titulo) {
+        if (titulo == null || titulo.isBlank()) {
+            throw new IllegalArgumentException("título inválido");
+        }
         Prova prova = new Prova();
         prova.setTitulo(titulo);
         provaRepo.salvar(prova);
@@ -27,19 +30,19 @@ public class ProvaService {
     }
 
     public Questao cadastrarQuestao(long provaId, String enunciado,
-                                 String[] alternativas, char correta,
-                                 String fenInicial) {
+                                    String[] alternativas, char correta,
+                                    String fenInicial) {
         if (!provaRepo.existeProva(provaId)) {
             throw new IllegalArgumentException("prova não encontrada: " + provaId);
         }
-        Questao Questao = new Questao();
-        Questao.setProvaId(provaId);
-        Questao.setEnunciado(enunciado);
-        Questao.setAlternativas(alternativas);
-        Questao.setAlternativaCorreta(correta);
-        Questao.setFenInicial(fenInicial);
-        questaoRepo.salvar(Questao);
-        return Questao;
+        Questao questao = new Questao();
+        questao.setProvaId(provaId);
+        questao.setEnunciado(enunciado);
+        questao.setAlternativas(alternativas);
+        questao.setAlternativaCorreta(correta);
+        questao.setFenInicial(fenInicial);
+        questaoRepo.salvar(questao);
+        return questao;
     }
 
     public List<Prova> listarProvas() {

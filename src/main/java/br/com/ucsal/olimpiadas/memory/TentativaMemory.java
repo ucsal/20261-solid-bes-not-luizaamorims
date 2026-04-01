@@ -19,10 +19,7 @@ public class TentativaMemory implements TentativaRepository {
     private final List<Tentativa> tentativas = new ArrayList<>();
 
     public void salvar(Tentativa tentativa, long prova, List<Questao> questoes, List<Character> marcadas) {
-        Tentativa t = new Tentativa();
         tentativa.setId(proximoId++);
-        tentativa.setParticipanteId(t.getParticipanteId());
-        tentativa.setProvaId(t.getProvaId());
 
         for (int i = 0; i < questoes.size(); i++) {
             Questao q = questoes.get(i);

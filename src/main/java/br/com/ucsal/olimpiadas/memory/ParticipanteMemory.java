@@ -16,11 +16,8 @@ public class ParticipanteMemory implements ParticipanteRepository {
     private final List<Participante> participantes = new ArrayList<>();
 
     public void salvar(Participante participante) {
-        Participante p = new Participante();
-        p.setId(proximoId++);
-        p.setNome(p.getNome());
-        p.setEmail(p.getEmail());
-        participantes.add(p);
+        participante.setId(proximoId++);
+        participantes.add(participante);
     }
 
     public List<Participante> listarTodos() {
