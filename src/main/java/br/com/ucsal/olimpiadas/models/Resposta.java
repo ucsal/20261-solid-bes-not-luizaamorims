@@ -1,8 +1,10 @@
-package br.com.ucsal.olimpiadas;
+package br.com.ucsal.olimpiadas.models;
 
 public class Resposta {
+    //classe de modelo, armazena apenas os dados da entidade, sem lógica de negócio.
 
-	private long questaoId;
+
+    private long questaoId;
 	private char alternativaMarcada;
 	private boolean correta;
 
